@@ -4,7 +4,12 @@ from .models import Extractedtext
 class extractedtextserializer(serializers.ModelSerializer):
     class Meta:
         model =Extractedtext
-        fields=['id','image','text','keywords']
+        fields=['id','image','pdf','text','keywords']
 
 class uploadimage(serializers.Serializer):
-    image=serializers.ImageField()
+    image = serializers.ImageField(required=False)
+    pdf = serializers.FileField(required=False)
+
+    class Meta:
+        model=Extractedtext
+        fields=['image','pdf']
